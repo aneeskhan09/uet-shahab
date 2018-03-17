@@ -31,6 +31,9 @@
 	Remove this section on production
 -->
 	<style>
+		body{
+			margin-top: 60px !important;
+		}
 		#signin-demo {
 			position: fixed;
 			right: 0;
@@ -63,13 +66,23 @@
 	* 'right-to-left'     - Sets text direction to right-to-left
 -->
 <body class="theme-default page-signin" >
-<h1 align="center" style="color:#C90202;padding-top:40px; font-size:80px;"> ORACLE PEOPLESOFT</h1>
+<h1 align="center" style="color:#C90202;padding-top:40px; font-size:80px;"></h1>
 <script>
 	var init = [];
 </script>
 <!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
 
-	
+	<!-- Page background -->
+	<div id="page-signin-bg">
+		<!-- Background overlay -->
+		<div class="overlay">
+			<h1 align="center" style="color:#fff;padding-top:40px; font-size:80px; font-family: roboto light">ERP ORACLE PEOPLE-SOFT</h1>			
+		</div>
+		<!-- Replace this with your bg image -->
+		<img src="<?=base_url('assets/demo/signin-bg-1.jpg');?>" alt="">
+
+	</div>
+	<!-- / Page background -->
 
 	<!-- Container -->
 	<div class="signin-container">
@@ -77,12 +90,17 @@
 		<!-- Left side -->
 		<div class="signin-info">
         	<h3 style="color:#FFF">Campus Soloution</h3>
-			<a href="#" class="logo">
+			<!-- <a href="#" class="logo">
             	<img src="<?=base_url();?>assets/images/logo.png"  height="150px" width="150px"><br>
 				UET <span style="font-weight:100;">Peshawar</span>
-			</a> <!-- / .logo -->
+			</a> <!-- / .logo --> -->
 			<div class="slogan">
-				
+				<ul>
+				<li><i class="fa fa-sitemap signin-icon"></i>Business</li>
+				<li><i class="fa fa-file-text-o signin-icon"></i> Process</li>
+				<li><i class="fa fa-outdent signin-icon"></i> Re-Engineering</li>
+				<li><i class="fa fa-file-text-o signin-icon"></i> (BRP)</li>
+			</ul> 
 			</div> <!-- / .slogan -->
 			
 		</div>

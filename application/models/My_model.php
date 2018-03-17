@@ -148,5 +148,15 @@ class My_model extends CI_Model
 		//echo $this->db->last_query();
 		return $query->result();
 	}
+	//////////////////////////////////
+	function get_all_charges()
+	{
+		return $this->db->get('charges')->result();
+	}
+	////////////////////////////////
+	function delete_data($table,$where)
+	{
+		$this->db->where($where)->delete($table);
+	}
 }
 ?>

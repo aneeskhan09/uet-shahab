@@ -153,7 +153,11 @@
 							<label>Select Charges</label>
 							<select multiple="multiple" id="jquery-select2-multiple" class="form-control" name="charge_id[]">
 								 <?php foreach ($charges as $row):?>
-								<option value="<?=$row->CHARGE_ID?>"><?=$row->CHARGE;?></option>
+								<option value="<?=$row->CHARGE_ID?>">
+									<strong><?=$row->CHARGE_TYPE;?></strong>
+									<?=$row->CHARGE;?>
+										
+									</option>
 								<?php endforeach;?>
 							</select>
                  
@@ -190,7 +194,7 @@
 							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
 								<thead>
 									<tr>
-										
+										<th>STUDENT ID</th>
 										<th>Invoice No.</th>
 										<th>Student Name</th>
 										<th>Transiction Date</th>
@@ -202,7 +206,7 @@
 								<tbody>
                                 	<?php foreach($invoice as $row):?>
 									<tr class="odd gradeX">
-										
+										<td><?=$row->REGISTERATION_NO;?></td>
                                         <td><?=$row->INVOICE_NO;?></td>
                                         <td><?=$row->STUDENT_NAME;?></td>
                                         

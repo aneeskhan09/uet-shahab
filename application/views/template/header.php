@@ -8,7 +8,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>UET PESHAWAR</title>
+	<title>CAMPUS SOLUTIONS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 	<!-- Open Sans font from Google CDN -->
@@ -64,7 +64,7 @@
 
 				<!-- Logo -->
 				<a href="<?php echo base_url();?>" class="navbar-brand">
-					<strong>UET Peshawar</strong>
+					<strong>CAMPUS SOLUTION</strong>
 				</a>
 
 				<!-- Main navbar toggle -->
@@ -192,6 +192,10 @@
 				<li>
 					<a href="<?=base_url();?>"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Proposed Soloution</span></a>
 				</li>
+				<li>
+					<a href="<?=base_url('welcome/charges_setting');?>"><i class="menu-icon fa fa-dollar"></i><span class="mm-text">Charges Managment</span></a>
+				</li>
+
 			</ul> <!-- / .navigation -->
 			<!--<div class="menu-content">
 				<a href="pages-invoice.html" class="btn btn-primary btn-block btn-outline dark">Create Invoice</a>

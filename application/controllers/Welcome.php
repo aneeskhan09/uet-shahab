@@ -112,8 +112,8 @@ class Welcome extends CI_Controller {
 			
             <div class="text-center">
 				
-                <img src="'.base_url("assets/images/logo.png").'" height="100px" width="100px" class="">
-                <h4>University Of Engineering And Technology Peshawar</h4>
+                
+                <h4>ERP Business Process Re-Engineering</h4>
             </div>
             <hr>
             <div class="row">
@@ -141,7 +141,7 @@ class Welcome extends CI_Controller {
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
-                                    <td><strong>#</strong></td>
+                                    <td><strong>Type</strong></td>
                                     <td class="text-center"><strong>Charges</strong></td>
                                     
                                 </tr>
@@ -151,7 +151,7 @@ class Welcome extends CI_Controller {
 							$charge = '';
 							foreach($data['details'] as $row){
                                echo '<tr>
-                                    <td>'.$a++.'</td>
+                                    <td>'.$row->CHARGE_TYPE.'</td>
                                     <td class="text-center">'.$row->CHARGE.' Pkr</td>
                                     
                                 </tr>';
@@ -252,7 +252,7 @@ class Welcome extends CI_Controller {
 			$a = 1;
 			foreach($data['list'] as $row){
 					echo '<tr>
-								
+										 <td>'.$row->REGISTERATION_NO.'</td>
                                         <td>'.$row->INVOICE_NO.'</td>
                                         <td>'.$row->STUDENT_NAME.'</td>
                                          <td>'.$row->DEPARTMENT.'</td>
@@ -303,7 +303,7 @@ class Welcome extends CI_Controller {
 				$a = 1;
 				foreach($data['list'] as $row){
 						echo '<tr>
-									
+											<td>'.$row->REGISTERATION_NO.'</td>
 											<td>'.$row->INVOICE_NO.'</td>
 											<td>'.$row->STUDENT_NAME.'</td>
 											
@@ -330,10 +330,89 @@ class Welcome extends CI_Controller {
 		}
 		endif;
 	}
+	///////////////// Charges setting ///////////////////
+    public function charges_setting()
+	{
+		$data['charges'] = $this->My_model->get_all_charges(); 
+		$this->header();
+		$this->load->view('pages/charges_setting',$data);
+		$this->footer();
+	}
+	//////////////////// Create charges //////////////////
+	public function create_charges()
+	{
+		extract($_POST);
+		$data = array(
+			'CHARGE'	=>		$charge,
+			'CHARGE_TYPE' =>	$chargetype
+			);
+		$this->My_model->insert_data('charges',$data);
+		
+		if($data == true)
+		{
+			$this->session->set_flashdata('msg','<div class="alert alert-dark alert-success">Data Saved Sucessfully</div>');
+			redirect('Welcome/charges_setting');
+		}
+		
+	}
+	////////////////////update charge/////////////
+	public function update_charges()
+	{
+		if (isset($_POST) && count($_POST) !== 0 ) {
+			extract($_POST);
+        	$data = array('CHARGE_TYPE' => $chargetype, 'CHARGE'	=>	$charge );
+        	$update = $this->My_model->update_any_table('charges', $data,array('CHARGE_ID ' => $id));
+        	if($update == true)
+			{
+				$this->session->set_flashdata('msg','<div class="alert alert-dark alert-success">Changes Saved Sucessfully</div>');
+				redirect('Welcome/charges_setting');
+			}
+		
+        }
+        	else{
+			$id = $_GET['id']; 
+			$data['check'] = $this->My_model->select_any_row('charges',array('CHARGE_ID' => $id)); //echo "<pre>";print_r($data);
+			
+			$output = '<div class="col-sm-8"> <fieldset class="well" style="border: #F33 solid 1px">
+	        <legend class=""> Edit Charge</legend>
+	        <form class="form" method="post" action="'.base_url("welcome/update_charges").'">
+	        	
+	            	<div class="col-sm-12">
+	                			<label>Charge Type name</label><br>
+								<input type="text" class="form-control" name="chargetype" value="'.$data['check']->CHARGE_TYPE.'">
+							
+	       					<br>
+							<!-- Primary -->
+								<label> Charges</label>
+								<input class="form-control" type="number" name="charge" value="'.str_replace(" ", "", $data['check']->CHARGE).'">
+	                        	<br>
+	                        	<input type="hidden" name = "id" value="'.$data['check']->CHARGE_ID.'">
+	                         	<button type="submit" class="btn btn-danger">Save</button>
+	                         </div>
+							
+	                        
+	                        
+	            </form>            
+	        </div>
+	        </fieldset></div>
+	        ';
+	        echo $output;
+	     }
+        
+	}
+	/////////////////// Delete Charges ///////////
+	public function delete_charges($id)
+	{
+		$Delete = $this->My_model->delete_data('charges',array('CHARGE_ID' =>  $id ));
+		
+			$this->session->set_flashdata('msg','<div class="alert alert-dark alert-danger">Charges Deleted Sucessfully</div>');
+				redirect('Welcome/charges_setting');
+		
+	}
  	//////////////////////logout ////////////////////////////
 	public function logout()
 	{
-	$this->session->sess_destroy();
-	redirect('welcome/login');
+		$this->session->sess_destroy();
+		redirect('welcome/login');
 	}
 }

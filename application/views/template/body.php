@@ -29,12 +29,12 @@
 						// Single select
 						$("#jquery-select2-example").select2({
 							allowClear: true,
-							placeholder: "Select a Charges"
+							placeholder: "Please Select"
 						});
 
 						// Multiselect
 						$("#jquery-select2-multiple").select2({
-							placeholder: "Select a Charges"
+							placeholder: "Please Select"
 						});
 
 						// External source
@@ -137,7 +137,7 @@
 			}?>
         <fieldset class="well" style="border: #F33 solid 1px">
         <legend class=""> Post Transiction</legend>
-        <form class="form" method="post" action="<?=base_url('welcome/create_invoice');?>">
+        <form class="form" method="post" action="<?=base_url('welcome/create_charge');?>">
         	
             	<div class="col-sm-12">
                 			<label>Select Student</label><br>
@@ -152,8 +152,12 @@
 						<!-- Primary -->
 							<label>Select Charges</label>
 							<select multiple="multiple" id="jquery-select2-multiple" class="form-control" name="charge_id[]">
+
 								 <?php foreach ($charges as $row):?>
-								<option value="<?=$row->CHARGE_ID?>"><?=$row->CHARGE;?></option>
+								<option value="<?=$row->CHARGE_ID?>">
+										<strong><?=$row->CHARGE_TYPE;?></strong>
+										<?=$row->CHARGE;?>
+									</option>
 								<?php endforeach;?>
 							</select>
                  
@@ -190,7 +194,7 @@
 							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
 								<thead>
 									<tr>
-										<th>Serial #</th>
+										<th>Student ID</th>
 										<th>Invoice No.</th>
 										<th>Student Name</th>
 										<th>Transiction Date</th>
@@ -202,7 +206,7 @@
 								<tbody>
                                 	<?php $a = 1;foreach($invoice as $row):?>
 									<tr class="odd gradeX">
-										<td><?php echo $a++;?></td>
+										<td><?=$row->REGISTERATION_NO;?></td>
                                         <td><?=$row->INVOICE_NO;?></td>
                                         <td><?=$row->STUDENT_NAME;?></td>
                                         
@@ -286,7 +290,7 @@
 					init.push(function () {
 						$('#jq-datatables-example').dataTable();
 						$('#jq-datatables-example_wrapper .table-caption').text('Generated Charges');
-						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...').
 					});
 				</script>
 				<!-- / Javascript -->

@@ -195,7 +195,7 @@
 							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="">
 								<thead>
 									<tr>
-										
+										<th>STUDENT ID</th>
 										<th>Invoice No.</th>
 										<th>Student Name</th>
                                         <th>Department</th>
