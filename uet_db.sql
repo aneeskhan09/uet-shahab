@@ -1,4 +1,11 @@
-
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 26, 2018 at 09:04 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -21,23 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `charges` (
   `CHARGE_ID` int(11) NOT NULL,
-  `CHARGE` varchar(50) DEFAULT NULL
+  `CHARGE` varchar(50) DEFAULT NULL,
+  `CHARGE_TYPE` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `charges`
 --
 
-INSERT INTO `charges` (`CHARGE_ID`, `CHARGE`) VALUES
-(1, '100 '),
-(2, '200 '),
-(3, '300 '),
-(4, '500 '),
-(5, '800 '),
-(6, '1000 '),
-(7, '2000'),
-(8, '2500'),
-(9, NULL);
+INSERT INTO `charges` (`CHARGE_ID`, `CHARGE`, `CHARGE_TYPE`) VALUES
+(1, '1002', 'LAB FEE1'),
+(2, '200', 'LIBRARY'),
+(4, '500 ', 'DUMMY'),
+(5, '800 ', 'DUMMY'),
+(6, '1000 ', 'PARKING FEE'),
+(7, '2000', 'EXTRA FEE'),
+(8, '2500', 'TAX');
 
 -- --------------------------------------------------------
 
@@ -496,7 +502,7 @@ ALTER TABLE `usr_user_copy`
 -- AUTO_INCREMENT for table `charges`
 --
 ALTER TABLE `charges`
-  MODIFY `CHARGE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `CHARGE_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `invoice_log`
 --
